@@ -21,6 +21,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.service.PetClinicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,7 +45,7 @@ class OwnerController {
     private final OwnerRepository owners;
     
     @Autowired
-    private OwnerService ownerService;
+    private PetClinicService petClinicService;
 
     @Autowired
     public OwnerController(OwnerRepository clinicService) {
@@ -132,7 +133,7 @@ class OwnerController {
     public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
         ModelAndView mav = new ModelAndView("owners/ownerDetails");
         //mav.addObject(this.owners.findById(ownerId));
-        mav.addObject(this.ownerService.findById(ownerId));
+        mav.addObject(this.petClinicService.findById(ownerId));
         return mav;
     }
 

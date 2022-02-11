@@ -24,7 +24,9 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 
@@ -32,6 +34,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
+import org.springframework.samples.petclinic.bill.Bill;
 import org.springframework.samples.petclinic.model.Person;
 
 /**
@@ -45,6 +48,8 @@ import org.springframework.samples.petclinic.model.Person;
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
+	
+	
     @Column(name = "address")
     @NotEmpty
     private String address;
@@ -62,7 +67,30 @@ public class Owner extends Person {
     private Set<Pet> pets;
 
    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private Set<Bill> bills;
     
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
+    private User users;
+
+    
+	public User getUsers() {
+		return users;
+	}
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
+
+	public Set<Bill> getBills() {
+    	return bills;
+    }
+
+    public void setBills(Set<Bill> bills) {
+    	this.bills = bills;
+    }
+
     
 
     public void setPets(Set<Pet> pets) {

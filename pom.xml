@@ -35,6 +35,10 @@
   </properties>
 
   <dependencies>
+  	<dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+    </dependency>
     <!-- Spring and Spring Boot dependencies -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -88,7 +92,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.11</version>
+     <version>8.0.28</version>
     </dependency>
 
     <!-- EhCache -->
